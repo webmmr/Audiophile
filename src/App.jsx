@@ -3,17 +3,22 @@ import GlobalStyles from "./styles/GlobalCSS";
 import { GlobalProvider } from "./context/useGlobalContext";
 
 import AppLayout from "./ui/AppLayout";
-import Home from "./pages/Home";
+import Home, { loader as dataLoader } from "./pages/Home";
 import Category from "./pages/Category";
-import Product from "./pages/Product";
+import SingleProduct, { loader as productLoader } from "./pages/SingleProduct";
+
+import Error from "./ui/Error";
+import Checkout from "./features/checkout/Checkout";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
         element: <Home />,
+        loader: dataLoader,
       },
       {
         path: "/category/:category",
@@ -21,7 +26,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/product/:slug",
-        element: <Product />,
+        element: <SingleProduct />,
+        loader: productLoader,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
     ],
   },

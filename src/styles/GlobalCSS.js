@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
 body {
   font-family: 'Manrope', sans-serif;
   color: var(--dark);
-
+  background-color: var(--light);
   min-height: 100vh;
   
   line-height: 25px;
@@ -43,9 +43,41 @@ a:hover {
   color: var(--brand) !important;
 }
 
+a:hover span {
+  color: var(--dark);
+}
+
 p {
   margin: 30px 0;
 }
+
+input[type="radio"] {
+    display: none;
+   
+  }
+
+  input[type="radio"]:checked + label {
+    border-color: var(--brand);
+    cursor: pointer;
+  } 
+  
+  input[type="radio"] + label {
+  
+    cursor: pointer;
+  }
+
+
+  input[type="radio"]:checked + label::after {
+    position: absolute;
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    background-color: var(--brand);
+    top: 50%;
+    left: 0;
+    transform: translate(135%, -8px);
+  }
 
 footer p {
   color: var(--light);
@@ -54,12 +86,12 @@ footer p {
 .loader {
   width: 45px;
   aspect-ratio: 0.75;
-  --c: no-repeat linear-gradient(#333 0 0);
+  --c: no-repeat linear-gradient(var(--brand) 0 0);
   background:
     var(--c) 0% 50%,
     var(--c) 50% 50%,
     var(--c) 100% 50%;
-  background-size: 20% 50%;
+  background-size: 20% 60%;
   animation: loading 1s infinite linear;
 }
 

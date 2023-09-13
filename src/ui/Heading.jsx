@@ -33,7 +33,6 @@ const Heading = styled.h1`
     props.as === "h4" &&
     css`
       font-size: 1.75rem;
-
       letter-spacing: 2px;
     `}
 
@@ -61,6 +60,16 @@ const Heading = styled.h1`
     props.color === "light" &&
     css`
       color: var(--light);
+    `}
+
+    ${(props) =>
+    props.type === "subTitle" &&
+    css`
+      color: var(--brand);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
     `}
 `;
 

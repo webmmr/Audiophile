@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Heading from "./Heading";
 import Button from "./Button";
 import arrow from "../assets/shared/desktop/icon-arrow-right.svg";
+import { Link } from "react-router-dom";
 
 const StyledCat = styled.div`
   background-color: var(--light);
@@ -27,16 +28,18 @@ function SingleCat({ name, image }) {
       <Heading as="h6" color="dark">
         {name}
       </Heading>
-      <Button variation="shop">
-        Shop{" "}
-        <span
-          style={{
-            marginLeft: "5px",
-          }}
-        >
-          <img src={arrow} alt="arr" />
-        </span>
-      </Button>
+      <Link to={`/category/${name}`}>
+        <Button variation="shop">
+          Shop{" "}
+          <span
+            style={{
+              marginLeft: "5px",
+            }}
+          >
+            <img src={arrow} alt="arr" />
+          </span>
+        </Button>
+      </Link>
     </StyledCat>
   );
 }

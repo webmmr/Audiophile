@@ -1,11 +1,13 @@
-import { useNavigate, useParams } from "react-router-dom";
-// import SingleProduct from "../ui/SingleProduct";
-import { useGlobalContext } from "../context/useGlobalContext";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+
 import Container from "../ui/Container";
 import Button from "../ui/Button";
 import Overline from "../ui/Overline";
 import Heading from "../ui/Heading";
 import styled, { css } from "styled-components";
+import { getData } from "../services/apiShop";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cart/cartSlice";
 
 const StyledBack = styled.div`
   padding: 50px 0;
@@ -59,16 +61,40 @@ const StyledSpan = styled.span`
   font-weight: 700;
 `;
 
-function Product() {
+function SingleProduct() {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { isLoading, productsData, error } = useGlobalContext();
+  // const { isLoading, productsData, error } = useGlobalContext();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) console.log(error);
+  // if (isLoading) return <p>Loading...</p>;
+  // if (error) console.log(error);
+
+  const productsData = useLoaderData();
 
   const product = productsData?.find((product) => product?.slug === slug);
+
+  const { id, name, price, image, description } = product;
+
+  // console.log(id, name, price, image, description);
+
+  const { desktop, tablet, mobile, forCart } = image;
+
+  // console.log(product);
+
+  function handleAddItem() {
+    const newItem = {
+      id,
+      name,
+      forCart,
+      price,
+      quantity: 1,
+      totalPrice: price * 1,
+    };
+
+    dispatch(addItem(newItem));
+  }
 
   return (
     <>
@@ -79,18 +105,15 @@ function Product() {
           </Button>
         </StyledBack>
         <StyledGridContainer columns="equal">
-          <StyledImage
-            src={`../${product?.image?.desktop}`}
-            alt={product?.name}
-          />
+          <StyledImage src={`../${desktop}`} alt={name} />
           <StyledDiv>
             {product?.new && <Overline>New Product</Overline>}
             <Heading as="h2" color="dark">
-              {product?.name}
+              {name}
             </Heading>
-            <p>{product?.description}</p>
+            <p>{description}</p>
 
-            <Button>Add to cart</Button>
+            <Button onClick={handleAddItem}>Add to cart</Button>
           </StyledDiv>
         </StyledGridContainer>
         <StyledGridContainer columns="twoOne">
@@ -136,4 +159,10 @@ function Product() {
   );
 }
 
-export default Product;
+export async function loader() {
+  const allProducts = await getData();
+
+  return allProducts;
+}
+
+export default SingleProduct;

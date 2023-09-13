@@ -6,6 +6,7 @@ import Heading from "./Heading";
 import Logo from "./Logo";
 import Menu from "./Menu";
 import Social from "./Social";
+import { useLocation } from "react-router-dom";
 
 const StyledBestSection = styled.div`
   display: grid;
@@ -35,35 +36,41 @@ const StyledFooterContent = styled.section`
 `;
 
 const Footer = () => {
+  const location = useLocation();
+
+  const isCheckoutPage = location.pathname === "/checkout";
+
   return (
     <>
-      <Container>
-        <StyledBestSection>
-          <div
-            style={{
-              marginRight: "15%",
-            }}
-          >
-            <Heading as="h2" color="dark">
-              Bringing you the <StyledSpan>Best</StyledSpan> audio gear
-            </Heading>
-            <p
+      {!isCheckoutPage && (
+        <Container>
+          <StyledBestSection>
+            <div
               style={{
-                marginTop: "30px",
+                marginRight: "15%",
               }}
             >
-              Located at the heart of New York City, Audiophile is the premier
-              store for high end headphones, earphones, speakers, and audio
-              accessories. We have a large showroom and luxury demonstration
-              rooms available for you to browse and experience a wide range of
-              our products. Stop by our store to meet some of the fantastic
-              people who make Audiophile the best place to buy your portable
-              audio equipment.
-            </p>
-          </div>
-          <StyleImg src={FooterImage} alt="Footer Image" />
-        </StyledBestSection>
-      </Container>
+              <Heading as="h2" color="dark">
+                Bringing you the <StyledSpan>Best</StyledSpan> audio gear
+              </Heading>
+              <p
+                style={{
+                  marginTop: "30px",
+                }}
+              >
+                Located at the heart of New York City, Audiophile is the premier
+                store for high end headphones, earphones, speakers, and audio
+                accessories. We have a large showroom and luxury demonstration
+                rooms available for you to browse and experience a wide range of
+                our products. Stop by our store to meet some of the fantastic
+                people who make Audiophile the best place to buy your portable
+                audio equipment.
+              </p>
+            </div>
+            <StyleImg src={FooterImage} alt="Footer Image" />
+          </StyledBestSection>
+        </Container>
+      )}
       <StyledFooter>
         <Container>
           <Row>
@@ -72,8 +79,8 @@ const Footer = () => {
           </Row>
           <StyledFooterContent>
             <p>
-              Audiophile is an all in one stop to fulfill your audio needs.
-              We're a small team of music lovers and sound specialists who are
+              Audiophile is an all in one stop to fulfill your audio needs. We
+              are a small team of music lovers and sound specialists who are
               devoted to helping you get the most out of personal audio. Come
               and visit our demo facility - we’re open 7 days a week.
             </p>

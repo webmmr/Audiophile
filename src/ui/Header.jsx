@@ -1,11 +1,18 @@
-import { Link } from "react-router-dom";
+/* eslint-disable react/prop-types */
+
 import styled, { css } from "styled-components";
 import Container from "./Container";
 import Logo from "./Logo";
 import Menu from "./Menu";
 import Row from "./Row";
+import Modal from "./Modal";
 
 import CartIcon from "../assets/shared/desktop/icon-cart.svg";
+
+import { useSelector } from "react-redux";
+import { getTotalCartQuantity } from "../features/cart/cartSlice";
+import Cart from "../features/cart/Cart";
+import Button from "./Button";
 
 const StyledHeader = styled.header`
   /* background-color: var(--dark); */
@@ -17,22 +24,62 @@ const StyledHeader = styled.header`
   /* position: relative; */
 
   ${(props) =>
-    props.hasBanner === "no" &&
+    props.hasbanner === "no" &&
     css`
       background-color: var(--dark);
     `}
 `;
 
-function Header({ hasBanner }) {
+const StyledBadge = styled.span`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: var(--brand);
+  font-size: 0.8rem;
+  font-weight: 700;
+  position: absolute;
+  top: -12px;
+  right: -12px;
+`;
+
+function Header({ hasbanner }) {
+  const totalCartQuantity = useSelector(getTotalCartQuantity);
+
   return (
-    <StyledHeader hasBanner={hasBanner}>
+    <StyledHeader hasbanner={hasbanner}>
       <Container>
         <Row banner="yes">
           <Logo />
           <Menu />
-          <Link to="/cart">
-            <img src={CartIcon} alt="cart" />
-          </Link>
+          <div
+            style={{
+              position: "relative",
+            }}
+          >
+            {/* <Link to="/cart">
+              <img src={CartIcon} alt="cart" />
+              {totalCartQuantity > 0 && (
+                <StyledBadge>{totalCartQuantity}</StyledBadge>
+              )}
+            </Link> */}
+
+            <Modal>
+              <Modal.Open opens="cart">
+                <Button variation="cart" type="button">
+                  <img src={CartIcon} alt="cart" />
+                  {totalCartQuantity > 0 && (
+                    <StyledBadge>{totalCartQuantity}</StyledBadge>
+                  )}
+                </Button>
+              </Modal.Open>
+              <Modal.Window name="cart">
+                <Cart />
+              </Modal.Window>
+            </Modal>
+          </div>
         </Row>
       </Container>
     </StyledHeader>

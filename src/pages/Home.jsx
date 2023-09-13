@@ -16,6 +16,9 @@ import Button from "../ui/Button";
 import SingleCat from "../ui/SingleCat";
 import Row from "../ui/Row";
 import Loader from "../ui/Loader";
+import { getData } from "../services/apiShop";
+import { useLoaderData } from "react-router-dom";
+import UniqueCats from "../ui/UniqueCats";
 
 const StyledBanner = styled.section`
   background-image: url(${bannerBackgroundImage});
@@ -79,31 +82,9 @@ const StyledDiv = styled.div`
 `;
 
 function Home() {
-  const { isLoading, error, productsData } = useGlobalContext();
+  // const { isLoading, error, productsData } = useGlobalContext();
 
-  if (isLoading) return <Loader />;
-  if (error) console.log(error);
-
-  let newArrayForCats;
-
-  if (!isLoading && productsData) {
-    console.log(productsData);
-
-    const uniqueCategories = {};
-
-    productsData.forEach((item) => {
-      const { category, categoryImage } = item;
-
-      if (!uniqueCategories[category]) {
-        uniqueCategories[category] = categoryImage;
-      }
-    });
-
-    newArrayForCats = Object.keys(uniqueCategories).map((category) => ({
-      category,
-      categoryImage: uniqueCategories[category],
-    }));
-  }
+  const productData = useLoaderData();
 
   return (
     <>
@@ -137,15 +118,7 @@ function Home() {
 
       <Container>
         <StyledCats>
-          {newArrayForCats?.map((item) => {
-            return (
-              <SingleCat
-                name={item.category}
-                image={item.categoryImage}
-                key={item.category}
-              />
-            );
-          })}
+          <UniqueCats productData={productData} />
         </StyledCats>
 
         <StyledZX9>
@@ -222,6 +195,12 @@ function Home() {
       </Container>
     </>
   );
+}
+
+export async function loader() {
+  const productData = await getData();
+
+  return productData;
 }
 
 export default Home;

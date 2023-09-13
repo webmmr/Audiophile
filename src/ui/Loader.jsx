@@ -7,7 +7,7 @@ const StyledLoader = styled.div`
   justify-content: center;
   color: var(--brand);
   inset: 0px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
 `;
 
 function Loader() {
