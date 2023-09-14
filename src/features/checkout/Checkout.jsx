@@ -6,7 +6,7 @@ import Button from "../../ui/Button";
 import Heading from "../../ui/Heading";
 import InputText from "../../ui/InputText";
 import InputRadio from "../../ui/InputRadio";
-import Cart from "../cart/Cart";
+
 import Summary from "../../ui/Summary";
 
 const StyledBack = styled.div`

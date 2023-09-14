@@ -5,23 +5,23 @@ import styled, { css } from "styled-components";
 import useOutsideClick from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
-  /* position: fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
   background-color: var(--white);
   border-radius: var(--default);
   transition: all 0.5s;
+  padding: 2rem;
 
-  ${(props) =>
+  /* ${(props) =>
     props.variation === "cart" &&
     css`
-      padding: 2rem;
       position: fixed;
       top: 12%;
       right: 8%;
       transform: translate(-12%, 8%);
-    `}
+    `} */
 `;
 
 const Overlay = styled.div`

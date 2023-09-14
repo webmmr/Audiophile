@@ -48,6 +48,7 @@ function CartItem({ item }) {
           <StylePrice>{formatCurrency(totalPrice)}</StylePrice>
         </div>
       </StyledDiv>
+
       <UpdateQuantity id={id} />
     </StyledItem>
   );

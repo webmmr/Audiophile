@@ -62,6 +62,24 @@ const Heading = styled.h1`
       color: var(--light);
     `}
 
+    /* ${(props) =>
+    props.color === "paleLight" &&
+    css`
+      color: var(--paleLight);
+    `} */
+
+    ${(props) =>
+    props.color === "darkGray" &&
+    css`
+      color: var(--darkGray);
+    `}
+
+    ${(props) =>
+    props.color === "brand" &&
+    css`
+      color: var(--brand);
+    `}
+
     ${(props) =>
     props.type === "subTitle" &&
     css`

@@ -8,6 +8,7 @@ import styled, { css } from "styled-components";
 import { getData } from "../services/apiShop";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
+import UpdateQuantity from "../ui/UpdateQuantity";
 
 const StyledBack = styled.div`
   padding: 50px 0;
@@ -112,8 +113,10 @@ function SingleProduct() {
               {name}
             </Heading>
             <p>{description}</p>
-
-            <Button onClick={handleAddItem}>Add to cart</Button>
+            <div>
+              <UpdateQuantity initQuantity="1" id={id} />
+              <Button onClick={handleAddItem}>Add to cart</Button>
+            </div>
           </StyledDiv>
         </StyledGridContainer>
         <StyledGridContainer columns="twoOne">

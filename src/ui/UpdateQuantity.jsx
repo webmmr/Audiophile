@@ -22,7 +22,7 @@ const StyledSpan = styled.span`
   font-size: 1rem;
 `;
 
-function UpdateQuantity({ id }) {
+function UpdateQuantity({ id, initQuantity }) {
   const totalQuantity = useSelector(getTotalSingleProductQuantity(id));
 
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function UpdateQuantity({ id }) {
       <Button variation="update" onClick={() => dispatch(decreaseItem(id))}>
         -
       </Button>
-      <StyledSpan>{totalQuantity}</StyledSpan>
+      <StyledSpan>{totalQuantity || initQuantity}</StyledSpan>
       <Button variation="update" onClick={() => dispatch(increaseItem(id))}>
         +
       </Button>
