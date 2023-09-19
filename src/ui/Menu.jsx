@@ -16,22 +16,8 @@ const linkStyle = {
   color: "#f1f1f1",
   textTransform: "uppercase",
   fontWeight: "700",
+  padding: "1rem",
 };
-
-const categories = [
-  {
-    id: 1,
-    name: "headphones",
-  },
-  {
-    id: 2,
-    name: "speakers",
-  },
-  {
-    id: 3,
-    name: "earphones",
-  },
-];
 
 function Menu() {
   return (
@@ -40,14 +26,19 @@ function Menu() {
         <Link to="/" style={linkStyle}>
           Home
         </Link>
+        <Link to="/shop" style={linkStyle}>
+          Shop All
+        </Link>
+        <Link to="/category/headphones" style={linkStyle}>
+          Headphones
+        </Link>
+        <Link to="/category/earphones" style={linkStyle}>
+          Earphones
+        </Link>
+        <Link to="/category/speakers" style={linkStyle}>
+          Speakers
+        </Link>
       </StyledList>
-      {categories.map((category) => (
-        <StyledList key={category.id}>
-          <Link style={linkStyle} to={`/category/${category.name}`}>
-            {category.name}
-          </Link>
-        </StyledList>
-      ))}
     </StyledMenu>
   );
 }

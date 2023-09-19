@@ -61,6 +61,8 @@ const variations = {
     border: none;
     background: transparent;
     font-weight: 500;
+    text-transform: capitalize;
+    margin: 1rem 0;
 
     &:hover {
       color: var(--brand);

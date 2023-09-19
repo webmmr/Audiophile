@@ -9,6 +9,7 @@ import SingleProduct, { loader as productLoader } from "./pages/SingleProduct";
 
 import Error from "./ui/Error";
 import Checkout from "./features/checkout/Checkout";
+import Shop from "./pages/Shop";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: dataLoader,
+      },
+      {
+        path: "/shop",
+        element: <Shop />,
         loader: dataLoader,
       },
       {
