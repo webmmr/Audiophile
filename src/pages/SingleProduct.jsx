@@ -8,8 +8,9 @@ import styled, { css } from "styled-components";
 import { getData } from "../services/apiShop";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
-import UpdateQuantity from "../ui/UpdateQuantity";
+
 import UniqueCats from "../ui/UniqueCats";
+import { useState } from "react";
 
 const StyledBack = styled.div`
   padding: 50px 0;
@@ -80,6 +81,21 @@ const StyledCats = styled.section`
   align-items: center;
 `;
 
+const StyledUpdateContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const StyledSpan2 = styled.span`
+  color: var(--dark);
+
+  padding: ${(props) => (props.iscart ? "0.4rem 0.8rem" : "0.8rem 1.6rem")};
+  border: none;
+  background: var(--paleLight);
+  font-weight: 700;
+  font-size: 1rem;
+`;
+
 function SingleProduct() {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -87,13 +103,13 @@ function SingleProduct() {
 
   const productData = useLoaderData();
 
+  const [curQuantity, setCurQuantity] = useState(1);
+
   const product = productData?.find((product) => product?.slug === slug);
 
   const { id, name, price, image, description, others } = product;
 
   const { desktop, tablet, mobile, forCart } = image;
-
-  console.log(product);
 
   function handleAddItem() {
     const newItem = {
@@ -101,8 +117,8 @@ function SingleProduct() {
       name,
       forCart,
       price,
-      quantity: 1,
-      totalPrice: price * 1,
+      quantity: curQuantity,
+      totalPrice: price * curQuantity,
     };
 
     dispatch(addItem(newItem));
@@ -126,7 +142,25 @@ function SingleProduct() {
             <p>{description}</p>
             <div>
               <StyledButtonContainer>
-                <UpdateQuantity initQuantity="1" id={id} isCart={false} />
+                {/* <UpdateQuantity initQuantity="1" id={id} isCart={false} /> */}
+                <StyledUpdateContainer>
+                  <Button
+                    variation="update"
+                    type="big"
+                    onClick={() => setCurQuantity((prev) => prev - 1)}
+                    disabled={curQuantity === 1}
+                  >
+                    -
+                  </Button>
+                  <StyledSpan2>{curQuantity}</StyledSpan2>
+                  <Button
+                    variation="update"
+                    type="big"
+                    onClick={() => setCurQuantity((prev) => prev + 1)}
+                  >
+                    +
+                  </Button>
+                </StyledUpdateContainer>
                 <Button onClick={handleAddItem}>Add to cart</Button>
               </StyledButtonContainer>
             </div>

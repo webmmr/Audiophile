@@ -31,7 +31,7 @@ const StylePrice = styled.p`
 `;
 
 function CartItem({ item }) {
-  const { id, name, forCart, totalPrice } = item;
+  const { id, name, forCart, totalPrice, quantity } = item;
 
   const lastIndex = name.lastIndexOf(" ");
 
@@ -49,7 +49,7 @@ function CartItem({ item }) {
         </div>
       </StyledDiv>
 
-      <UpdateQuantity id={id} isCart={true} />
+      <UpdateQuantity id={id} curQuantity={quantity} />
     </StyledItem>
   );
 }

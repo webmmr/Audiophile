@@ -5,6 +5,14 @@ const type = {
     width: 100%;
     margin-top: 1.5rem;
   `,
+
+  small: css`
+    padding: 0.4rem 0.8rem;
+  `,
+
+  big: css`
+    padding: 0.8rem 1.6rem;
+  `,
 };
 
 const variations = {
@@ -84,8 +92,6 @@ const variations = {
     background: var(--paleLight);
     font-weight: 500;
     font-size: 1.2rem;
-
-    padding: ${(props) => (props.type ? "0.4rem 0.8rem" : "0.8rem 1.6rem")};
 
     &:hover {
       background-color: var(--brand);

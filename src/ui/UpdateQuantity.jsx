@@ -15,7 +15,7 @@ const StyledUpdateContainer = styled.div`
 const StyledSpan = styled.span`
   color: var(--dark);
 
-  padding: ${(props) => (props.isCart ? "0.4rem 0.8rem" : "0.8rem 1.6rem")};
+  padding: 0.4rem 0.8rem;
   border: none;
   background: var(--paleLight);
   font-weight: 700;
@@ -23,24 +23,22 @@ const StyledSpan = styled.span`
 `;
 
 // eslint-disable-next-line react/prop-types
-function UpdateQuantity({ id, initQuantity, isCart }) {
-  const totalQuantity = useSelector(getTotalSingleProductQuantity(id));
-
+function UpdateQuantity({ id, curQuantity }) {
   const dispatch = useDispatch();
 
   return (
     <StyledUpdateContainer>
       <Button
         variation="update"
-        type={isCart}
+        type="small"
         onClick={() => dispatch(decreaseItem(id))}
       >
         -
       </Button>
-      <StyledSpan isCart={isCart}>{totalQuantity || initQuantity}</StyledSpan>
+      <StyledSpan>{curQuantity}</StyledSpan>
       <Button
         variation="update"
-        type={isCart}
+        type="small"
         onClick={() => dispatch(increaseItem(id))}
       >
         +
