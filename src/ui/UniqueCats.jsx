@@ -18,8 +18,6 @@ function UniqueCats({ productData }) {
     categoryImage: uniqueCategories[category],
   }));
 
-  console.log(newArrayForCats);
-
   return newArrayForCats.map((item) => {
     return (
       <SingleCat

@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 
 import Container from "../ui/Container";
 import Button from "../ui/Button";
@@ -25,6 +25,12 @@ const StyledGridContainer = styled.section`
     css`
       align-items: center;
       grid-template-columns: 1fr 1fr;
+    `}
+  ${(props) =>
+    props.columns === "three" &&
+    css`
+      text-align: center;
+      grid-template-columns: 1fr 1fr 1fr;
     `}
 
   ${(props) =>
@@ -79,22 +85,15 @@ function SingleProduct() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const { isLoading, productData, error } = useGlobalContext();
-
-  // if (isLoading) return <p>Loading...</p>;
-  // if (error) console.log(error);
-
   const productData = useLoaderData();
 
   const product = productData?.find((product) => product?.slug === slug);
 
-  const { id, name, price, image, description } = product;
-
-  // console.log(id, name, price, image, description);
+  const { id, name, price, image, description, others } = product;
 
   const { desktop, tablet, mobile, forCart } = image;
 
-  // console.log(product);
+  console.log(product);
 
   function handleAddItem() {
     const newItem = {
@@ -170,6 +169,36 @@ function SingleProduct() {
           <div>
             <StyledImage src={`../${product?.gallery?.third?.desktop}`} />
           </div>
+        </StyledGridContainer>
+        <Heading
+          as="h4"
+          color="dark"
+          style={{
+            textAlign: "center",
+          }}
+        >
+          you may also like
+        </Heading>
+        <StyledGridContainer columns="three">
+          {others.map((item) => {
+            return (
+              <div key={item.slug}>
+                <StyledImage src={`../${item.image.desktop}`} alt={item.name} />
+                <Heading
+                  color="dark"
+                  as="h5"
+                  style={{
+                    margin: "1.5rem 0",
+                  }}
+                >
+                  {item.name}
+                </Heading>
+                <Link to={`/product/${item.slug}`}>
+                  <Button>See Product</Button>
+                </Link>
+              </div>
+            );
+          })}
         </StyledGridContainer>
         <StyledCats>
           <UniqueCats productData={productData} />
