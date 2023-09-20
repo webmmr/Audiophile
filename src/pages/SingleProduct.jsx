@@ -9,6 +9,7 @@ import { getData } from "../services/apiShop";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
 import UpdateQuantity from "../ui/UpdateQuantity";
+import UniqueCats from "../ui/UniqueCats";
 
 const StyledBack = styled.div`
   padding: 50px 0;
@@ -42,6 +43,11 @@ const StyledDiv = styled.div`
   padding: 125px;
 `;
 
+const StyledButtonContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
 const StyledImage = styled.img`
   border-radius: var(--default);
   width: 100%;
@@ -61,20 +67,26 @@ const StyledSpan = styled.span`
   margin-right: 15px;
   font-weight: 700;
 `;
+const StyledCats = styled.section`
+  padding: 300px 0 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 function SingleProduct() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const { isLoading, productsData, error } = useGlobalContext();
+  // const { isLoading, productData, error } = useGlobalContext();
 
   // if (isLoading) return <p>Loading...</p>;
   // if (error) console.log(error);
 
-  const productsData = useLoaderData();
+  const productData = useLoaderData();
 
-  const product = productsData?.find((product) => product?.slug === slug);
+  const product = productData?.find((product) => product?.slug === slug);
 
   const { id, name, price, image, description } = product;
 
@@ -114,8 +126,10 @@ function SingleProduct() {
             </Heading>
             <p>{description}</p>
             <div>
-              <UpdateQuantity initQuantity="1" id={id} />
-              <Button onClick={handleAddItem}>Add to cart</Button>
+              <StyledButtonContainer>
+                <UpdateQuantity initQuantity="1" id={id} isCart={false} />
+                <Button onClick={handleAddItem}>Add to cart</Button>
+              </StyledButtonContainer>
             </div>
           </StyledDiv>
         </StyledGridContainer>
@@ -157,6 +171,9 @@ function SingleProduct() {
             <StyledImage src={`../${product?.gallery?.third?.desktop}`} />
           </div>
         </StyledGridContainer>
+        <StyledCats>
+          <UniqueCats productData={productData} />
+        </StyledCats>
       </Container>
     </>
   );

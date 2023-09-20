@@ -17,7 +17,7 @@ import SingleCat from "../ui/SingleCat";
 import Row from "../ui/Row";
 import Loader from "../ui/Loader";
 import { getData } from "../services/apiShop";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import UniqueCats from "../ui/UniqueCats";
 
 const StyledBanner = styled.section`
@@ -112,7 +112,9 @@ function Home() {
             Experience natural, lifelike audio and exceptional build quality
             made for the passionate music enthusiast.
           </p>
-          <Button>See Product</Button>
+          <Link to="/product/xx99-mark-two-headphones">
+            <Button>See Product</Button>
+          </Link>
         </Container>
       </StyledBanner>
 
@@ -146,7 +148,9 @@ function Home() {
                 Upgrade to premium speakers that are phenomenally built to
                 deliver truly remarkable sound.
               </p>
-              <Button variation="dark">See Product</Button>
+              <Link to="/product/zx9-speaker">
+                <Button variation="dark">See Product</Button>
+              </Link>
             </StyledZX9Div>
           </Row>
         </StyledZX9>
@@ -162,8 +166,9 @@ function Home() {
             ZX7 <br />
             Speaker
           </Heading>
-
-          <Button variation="secondary">See Product</Button>
+          <Link to="/product/zx7-speaker">
+            <Button variation="secondary">See Product</Button>
+          </Link>
         </StyledZX7>
         <Row>
           <StyledDiv
@@ -188,8 +193,9 @@ function Home() {
             >
               YX1 Earphone
             </Heading>
-
-            <Button variation="secondary">See Product</Button>
+            <Link to="/product/yx1-earphones">
+              <Button variation="secondary">See Product</Button>
+            </Link>
           </StyledDiv>
         </Row>
       </Container>

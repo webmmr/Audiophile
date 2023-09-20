@@ -80,11 +80,12 @@ const variations = {
   update: css`
     color: var(--dark);
 
-    padding: 0.2rem 0.6rem;
     border: none;
     background: var(--paleLight);
     font-weight: 500;
     font-size: 1.2rem;
+
+    padding: ${(props) => (props.type ? "0.4rem 0.8rem" : "0.8rem 1.6rem")};
 
     &:hover {
       background-color: var(--brand);
@@ -114,7 +115,7 @@ const Button = styled.button`
   text-transform: uppercase;
   border: 1px;
   border-style: solid;
-  padding: 14px 32px;
+  padding: 0.8rem 2rem;
   font-weight: 700;
   opacity: 1;
   font-size: 0.825rem;

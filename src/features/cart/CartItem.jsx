@@ -49,7 +49,7 @@ function CartItem({ item }) {
         </div>
       </StyledDiv>
 
-      <UpdateQuantity id={id} />
+      <UpdateQuantity id={id} isCart={true} />
     </StyledItem>
   );
 }
