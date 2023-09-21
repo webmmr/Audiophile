@@ -21,7 +21,7 @@ const StyledCheckOutSection = styled.section`
 `;
 
 const StyledSection = styled.section`
-  background-color: var(--light);
+  background-color: var(--white);
   padding: 3rem 3rem 1.2rem;
   border-radius: var(--default);
   margin-bottom: 2.5rem;
@@ -52,8 +52,13 @@ const StyledLabelError = styled.div`
   color: var(--dark);
 `;
 
+const StyledError = styled.span`
+  color: #cd2c2c;
+`;
+
 const StyledProductSummary = styled.section`
-  background-color: var(--light);
+  background-color: var(--white);
+  height: fit-content;
   padding: 1.5rem;
   border-radius: var(--default);
 `;
@@ -64,7 +69,7 @@ function Checkout() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       payment: "cash",
@@ -72,7 +77,11 @@ function Checkout() {
     mode: "onChange",
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  console.log(errors);
 
   return (
     <>
@@ -100,26 +109,26 @@ function Checkout() {
                   <div>
                     <StyledLabelError>
                       <label htmlFor="name">Name</label>
-                      {/* <span>Error</span> */}
+                      <StyledError>{errors?.name?.message}</StyledError>
                     </StyledLabelError>
                     <InputText
                       placeholder="Jessica Alba"
                       type="text"
                       id="name"
-                      {...register("name", { required: true })}
+                      {...register("name", { required: "Name is required" })}
                     />
                   </div>
                   <div>
                     <StyledLabelError>
                       <label htmlFor="email">Email Address</label>
-                      {/* <span>Error</span> */}
+                      <StyledError>{errors?.email?.message}</StyledError>
                     </StyledLabelError>
                     <InputText
                       placeholder="jes.alba@mail.com"
                       type="email"
                       id="email"
                       {...register("email", {
-                        required: true,
+                        required: "Email is required",
                         pattern:
                           /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                       })}
@@ -130,13 +139,15 @@ function Checkout() {
                   <div>
                     <StyledLabelError>
                       <label htmlFor="phone">Phone Number</label>
-                      {/* <span>Error</span> */}
+                      <StyledError>{errors?.phone?.message}</StyledError>
                     </StyledLabelError>
                     <InputText
                       placeholder="+0123 456 987"
                       type="tel"
                       id="phone"
-                      {...register("phone", { required: true })}
+                      {...register("phone", {
+                        required: "Phone number is required",
+                      })}
                     />
                   </div>
                 </StyledGrid>
@@ -148,13 +159,15 @@ function Checkout() {
                 <div>
                   <StyledLabelError>
                     <label htmlFor="address">Address</label>
-                    {/* <span>Error</span> */}
+                    <StyledError>{errors?.address?.message}</StyledError>
                   </StyledLabelError>
                   <InputText
                     placeholder="123 Pinewood Str"
                     type="text"
                     id="address"
-                    {...register("address", { required: true })}
+                    {...register("address", {
+                      required: "Address is required",
+                    })}
                   />
                 </div>
 
@@ -162,25 +175,27 @@ function Checkout() {
                   <div>
                     <StyledLabelError>
                       <label htmlFor="zipcode">Zipcode</label>
-                      {/* <span>Error</span> */}
+                      <StyledError>{errors?.zipcode?.message}</StyledError>
                     </StyledLabelError>
                     <InputText
                       placeholder="14001"
                       type="number"
                       id="zipcode"
-                      {...register("zipcode", { required: true })}
+                      {...register("zipcode", {
+                        required: "Zipcode is required",
+                      })}
                     />
                   </div>
                   <div>
                     <StyledLabelError>
                       <label htmlFor="city">City</label>
-                      {/* <span>Error</span> */}
+                      <StyledError>{errors?.city?.message}</StyledError>
                     </StyledLabelError>
                     <InputText
                       placeholder="New York"
                       type="text"
                       id="city"
-                      {...register("city", { required: true })}
+                      {...register("city", { required: "City is required" })}
                     />
                   </div>
                 </StyledGrid>
@@ -189,13 +204,15 @@ function Checkout() {
                   <div>
                     <StyledLabelError>
                       <label htmlFor="country">Country</label>
-                      {/* <span>Error</span> */}
+                      <StyledError>{errors?.country?.message}</StyledError>
                     </StyledLabelError>
                     <InputText
                       placeholder="United States"
                       type="text"
                       id="country"
-                      {...register("country", { required: true })}
+                      {...register("country", {
+                        required: "Country is required",
+                      })}
                     />
                   </div>
                 </StyledGrid>
@@ -231,21 +248,29 @@ function Checkout() {
                 <StyledGrid>
                   <div>
                     <StyledLabelError>
-                      <label htmlFor="eNumber">e-Money Number</label>
-                      {/* <span>Error</span> */}
+                      <label htmlFor="enumber">e-Money Number</label>
+                      <StyledError>{errors?.enumber?.message}</StyledError>
                     </StyledLabelError>
                     <InputText
                       placeholder="2654979"
                       type="number"
-                      id="eNumber"
+                      id="enumber"
+                      name="enumber"
+                      {...register("enumber")}
                     />
                   </div>
                   <div>
                     <StyledLabelError>
-                      <label htmlFor="ePin">e-Money PIN</label>
-                      {/* <span>Error</span> */}
+                      <label htmlFor="epin">e-Money PIN</label>
+                      <StyledError>{errors?.epin?.message}</StyledError>
                     </StyledLabelError>
-                    <InputText placeholder="4632" type="number" id="ePin" />
+                    <InputText
+                      placeholder="4632"
+                      type="number"
+                      id="epin"
+                      name="epin"
+                      {...register("epin")}
+                    />
                   </div>
                 </StyledGrid>
               </StyledSection>
@@ -254,7 +279,7 @@ function Checkout() {
               <Heading as="h5" color="dark">
                 Summary
               </Heading>
-              <Summary />
+              <Summary isValid={isValid} />
             </StyledProductSummary>
           </StyledCheckOutSection>
         </form>

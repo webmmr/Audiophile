@@ -6,7 +6,7 @@ import TotalPrice from "./TotalPrice";
 import Heading from "./Heading";
 import { formatCurrency } from "../utilities/helpers";
 import Modal from "./Modal";
-import Button from "./Button";
+
 import ConfirmOrder from "../features/checkout/ConfirmOrder";
 
 const StyledPriceDiv = styled.div`
@@ -19,7 +19,7 @@ const StyledPriceDiv = styled.div`
 
 const StyledInputSubmit = styled.input`
   width: 100%;
-  margin-top: 1.5em;
+  margin-top: 2rem;
   color: var(--light);
   background-color: var(--brand);
   border-color: var(--brand);
@@ -36,9 +36,14 @@ const StyledInputSubmit = styled.input`
   &:hover {
     cursor: pointer;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    margin-top: 0;
+  }
 `;
 
-function Summary() {
+function Summary({ isValid }) {
   const { cart, totalCartPrice, shipping, vat, grandTotal } = TotalPrice();
 
   return (
@@ -74,13 +79,25 @@ function Summary() {
         </Heading>
         <Heading color="brand">{formatCurrency(grandTotal)}</Heading>
       </StyledPriceDiv>
-
-      {/* <StyledInputSubmit type="submit" value="Continue & Pay" /> */}
-
-      <StyledInputSubmit type="submit" value="Continue & Pay" />
+      {!isValid && (
+        <p
+          style={{
+            margin: "0",
+            marginTop: "2rem",
+            textAlign: "center",
+            fontSize: "0.8rem",
+          }}
+        >
+          Please fill all the fields
+        </p>
+      )}
       <Modal>
         <Modal.Open opens="confirm">
-          <StyledInputSubmit type="submit" value="Continue & Pay" />
+          <StyledInputSubmit
+            type="submit"
+            value="Continue & Pay"
+            disabled={!isValid}
+          />
         </Modal.Open>
 
         <Modal.Window name="confirm">

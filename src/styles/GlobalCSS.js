@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
 body {
   font-family: 'Manrope', sans-serif;
   color: var(--dark);
-  /* background-color: var(--light); */
+  background-color: var(--light);
   min-height: 100vh;
   line-height: 25px;
 }
@@ -52,7 +52,6 @@ p {
 
 input[type="radio"] {
     display: none;
-   
   }
 
   input[type="radio"]:checked + label {
@@ -77,6 +76,8 @@ input[type="radio"] {
     left: 0;
     transform: translate(135%, -8px);
   }
+
+  
 
 footer p {
   color: var(--light);

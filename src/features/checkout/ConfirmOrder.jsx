@@ -67,7 +67,11 @@ function ConfirmOrder() {
             if (index === 0)
               return <CartSummaryItem item={item} key={item.id} />;
           })}
-          <StyledCopy> and {cart.length - 1} other items</StyledCopy>
+          {cart.length > 1 ? (
+            <StyledCopy> and {cart.length - 1} other items</StyledCopy>
+          ) : (
+            ""
+          )}
           {/* {<CartSummaryItem cart={cart} />} */}
         </StyledDetailBox>
         <StyledTotalBox>
