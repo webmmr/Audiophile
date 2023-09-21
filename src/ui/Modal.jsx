@@ -57,6 +57,12 @@ function Open({ children, opens: openWindowName }) {
   const { open } = useContext(ModalContext);
 
   return cloneElement(children, { onClick: () => open(openWindowName) });
+
+  // if (children.length > 0 && children[1]?.type?.target === "button") {
+  //   return cloneElement(children, { onClick: () => open(openWindowName) });
+  // } else {
+  //   return cloneElement(children, { onClick: () => open(openWindowName) });
+  // }
 }
 
 function Window({ children, name }) {

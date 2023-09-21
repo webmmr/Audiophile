@@ -17,7 +17,28 @@ const StyledPriceDiv = styled.div`
   margin-bottom: 1rem;
 `;
 
-function Summary({ onCloseModal }) {
+const StyledInputSubmit = styled.input`
+  width: 100%;
+  margin-top: 1.5em;
+  color: var(--light);
+  background-color: var(--brand);
+  border-color: var(--brand);
+  border-radius: 0;
+  text-transform: uppercase;
+  border: 1px;
+  border-style: solid;
+  padding: 0.8rem 2rem;
+  font-weight: 700;
+  opacity: 1;
+  font-size: 0.825rem;
+  line-height: 25px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+function Summary() {
   const { cart, totalCartPrice, shipping, vat, grandTotal } = TotalPrice();
 
   return (
@@ -54,11 +75,12 @@ function Summary({ onCloseModal }) {
         <Heading color="brand">{formatCurrency(grandTotal)}</Heading>
       </StyledPriceDiv>
 
+      {/* <StyledInputSubmit type="submit" value="Continue & Pay" /> */}
+
+      <StyledInputSubmit type="submit" value="Continue & Pay" />
       <Modal>
         <Modal.Open opens="confirm">
-          <Button color="dark" type="full">
-            Continue & Pay
-          </Button>
+          <StyledInputSubmit type="submit" value="Continue & Pay" />
         </Modal.Open>
 
         <Modal.Window name="confirm">

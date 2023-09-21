@@ -38,7 +38,6 @@ const StylePrice = styled.p`
 `;
 
 function CartSummaryItem({ item }) {
-  console.log(item);
   const { id, name, forCart, quantity, totalPrice } = item;
   const lastIndex = name.lastIndexOf(" ");
 

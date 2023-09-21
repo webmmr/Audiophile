@@ -8,9 +8,9 @@ function EmptyCart({ onCloseModal }) {
       <p className="">
         Your cart is still empty. Start adding some products :)
       </p>
-      <Link to="/">
+      <Link to="/shop">
         <Button onClick={() => onCloseModal?.()} type="full">
-          Back to Home
+          Back to Shop
         </Button>
       </Link>
     </div>

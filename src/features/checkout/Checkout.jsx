@@ -8,6 +8,7 @@ import InputText from "../../ui/InputText";
 import InputRadio from "../../ui/InputRadio";
 
 import Summary from "../../ui/Summary";
+import { useForm } from "react-hook-form";
 
 const StyledBack = styled.div`
   padding: 50px 0;
@@ -20,7 +21,7 @@ const StyledCheckOutSection = styled.section`
 `;
 
 const StyledSection = styled.section`
-  background-color: var(--white);
+  background-color: var(--light);
   padding: 3rem 3rem 1.2rem;
   border-radius: var(--default);
   margin-bottom: 2.5rem;
@@ -52,7 +53,7 @@ const StyledLabelError = styled.div`
 `;
 
 const StyledProductSummary = styled.section`
-  background-color: var(--white);
+  background-color: var(--light);
   padding: 1.5rem;
   border-radius: var(--default);
 `;
@@ -60,160 +61,203 @@ const StyledProductSummary = styled.section`
 function Checkout() {
   const navigate = useNavigate();
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      payment: "cash",
+    },
+    mode: "onChange",
+  });
+
+  const onSubmit = (data) => console.log(data);
+
   return (
     <>
       <Container>
-        <StyledBack>
-          <Button onClick={() => navigate(-1)} variation="link">
-            Go back
-          </Button>
-        </StyledBack>
-        <StyledCheckOutSection>
-          <div>
-            <StyledSection>
-              <Heading
-                as="h3"
-                color="dark"
-                style={{
-                  marginBottom: "2rem",
-                }}
-              >
-                Checkout
-              </Heading>
-              <Heading type="subTitle">Billing details</Heading>
-              <StyledGrid>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <StyledBack>
+            <Button onClick={() => navigate(-1)} variation="link">
+              Go back
+            </Button>
+          </StyledBack>
+          <StyledCheckOutSection>
+            <div>
+              <StyledSection>
+                <Heading
+                  as="h3"
+                  color="dark"
+                  style={{
+                    marginBottom: "2rem",
+                  }}
+                >
+                  Checkout
+                </Heading>
+                <Heading type="subTitle">Billing details</Heading>
+                <StyledGrid>
+                  <div>
+                    <StyledLabelError>
+                      <label htmlFor="name">Name</label>
+                      {/* <span>Error</span> */}
+                    </StyledLabelError>
+                    <InputText
+                      placeholder="Jessica Alba"
+                      type="text"
+                      id="name"
+                      {...register("name", { required: true })}
+                    />
+                  </div>
+                  <div>
+                    <StyledLabelError>
+                      <label htmlFor="email">Email Address</label>
+                      {/* <span>Error</span> */}
+                    </StyledLabelError>
+                    <InputText
+                      placeholder="jes.alba@mail.com"
+                      type="email"
+                      id="email"
+                      {...register("email", {
+                        required: true,
+                        pattern:
+                          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                      })}
+                    />
+                  </div>
+                </StyledGrid>
+                <StyledGrid>
+                  <div>
+                    <StyledLabelError>
+                      <label htmlFor="phone">Phone Number</label>
+                      {/* <span>Error</span> */}
+                    </StyledLabelError>
+                    <InputText
+                      placeholder="+0123 456 987"
+                      type="tel"
+                      id="phone"
+                      {...register("phone", { required: true })}
+                    />
+                  </div>
+                </StyledGrid>
+              </StyledSection>
+
+              <StyledSection>
+                <Heading type="subTitle">Shipping Info</Heading>
+
                 <div>
                   <StyledLabelError>
-                    <label htmlFor="name">Name</label>
-                    {/* <span>Error</span> */}
-                  </StyledLabelError>
-                  <InputText placeholder="Jessica Alba" type="text" id="name" />
-                </div>
-                <div>
-                  <StyledLabelError>
-                    <label htmlFor="email">Email Address</label>
+                    <label htmlFor="address">Address</label>
                     {/* <span>Error</span> */}
                   </StyledLabelError>
                   <InputText
-                    placeholder="jes.alba@mail.com"
-                    type="email"
-                    id="email"
-                  />
-                </div>
-              </StyledGrid>
-              <StyledGrid>
-                <div>
-                  <StyledLabelError>
-                    <label htmlFor="phone">Phone Number</label>
-                    {/* <span>Error</span> */}
-                  </StyledLabelError>
-                  <InputText
-                    placeholder="+0123 456 987"
-                    type="tel"
-                    id="phone"
-                  />
-                </div>
-              </StyledGrid>
-            </StyledSection>
-
-            <StyledSection>
-              <Heading type="subTitle">Shipping Info</Heading>
-
-              <div>
-                <StyledLabelError>
-                  <label htmlFor="address">Address</label>
-                  {/* <span>Error</span> */}
-                </StyledLabelError>
-                <InputText
-                  placeholder="123 Pinewood Str"
-                  type="text"
-                  id="address"
-                />
-              </div>
-
-              <StyledGrid>
-                <div>
-                  <StyledLabelError>
-                    <label htmlFor="zipcode">Zipcode</label>
-                    {/* <span>Error</span> */}
-                  </StyledLabelError>
-                  <InputText placeholder="14001" type="number" id="zipcode" />
-                </div>
-                <div>
-                  <StyledLabelError>
-                    <label htmlFor="city">City</label>
-                    {/* <span>Error</span> */}
-                  </StyledLabelError>
-                  <InputText placeholder="New York" type="text" id="city" />
-                </div>
-              </StyledGrid>
-
-              <StyledGrid>
-                <div>
-                  <StyledLabelError>
-                    <label htmlFor="country">Country</label>
-                    {/* <span>Error</span> */}
-                  </StyledLabelError>
-                  <InputText
-                    placeholder="United States"
+                    placeholder="123 Pinewood Str"
                     type="text"
-                    id="country"
+                    id="address"
+                    {...register("address", { required: true })}
                   />
                 </div>
-              </StyledGrid>
-            </StyledSection>
-            <StyledSection>
-              <Heading type="subTitle">Payment details</Heading>
 
-              <StyledGridPayment>
-                <StyledLabelError>Payment Method</StyledLabelError>
-                <div>
+                <StyledGrid>
                   <div>
-                    <input
-                      type="radio"
-                      id="emoney"
-                      name="payment"
-                      value="e-Money"
+                    <StyledLabelError>
+                      <label htmlFor="zipcode">Zipcode</label>
+                      {/* <span>Error</span> */}
+                    </StyledLabelError>
+                    <InputText
+                      placeholder="14001"
+                      type="number"
+                      id="zipcode"
+                      {...register("zipcode", { required: true })}
                     />
-                    <InputRadio htmlFor="emoney">e-Money</InputRadio>
                   </div>
                   <div>
-                    <input
-                      type="radio"
-                      id="cash"
-                      name="payment"
-                      value="Cash on Delivery"
-                      checked
+                    <StyledLabelError>
+                      <label htmlFor="city">City</label>
+                      {/* <span>Error</span> */}
+                    </StyledLabelError>
+                    <InputText
+                      placeholder="New York"
+                      type="text"
+                      id="city"
+                      {...register("city", { required: true })}
                     />
-                    <InputRadio htmlFor="cash">Cash on Delivery</InputRadio>
                   </div>
-                </div>
-              </StyledGridPayment>
-              <StyledGrid>
-                <div>
-                  <StyledLabelError>
-                    <label htmlFor="eNumber">e-Money Number</label>
-                    {/* <span>Error</span> */}
-                  </StyledLabelError>
-                  <InputText placeholder="2654979" type="number" id="eNumber" />
-                </div>
-                <div>
-                  <StyledLabelError>
-                    <label htmlFor="ePin">e-Money PIN</label>
-                    {/* <span>Error</span> */}
-                  </StyledLabelError>
-                  <InputText placeholder="4632" type="number" id="ePin" />
-                </div>
-              </StyledGrid>
-            </StyledSection>
-          </div>
-          <StyledProductSummary>
-            <Heading as="h5" color="dark">
-              Summary
-            </Heading>
-            <Summary />
-          </StyledProductSummary>
-        </StyledCheckOutSection>
+                </StyledGrid>
+
+                <StyledGrid>
+                  <div>
+                    <StyledLabelError>
+                      <label htmlFor="country">Country</label>
+                      {/* <span>Error</span> */}
+                    </StyledLabelError>
+                    <InputText
+                      placeholder="United States"
+                      type="text"
+                      id="country"
+                      {...register("country", { required: true })}
+                    />
+                  </div>
+                </StyledGrid>
+              </StyledSection>
+              <StyledSection>
+                <Heading type="subTitle">Payment details</Heading>
+
+                <StyledGridPayment>
+                  <StyledLabelError>Payment Method</StyledLabelError>
+                  <div>
+                    <div>
+                      <input
+                        type="radio"
+                        id="emoney"
+                        name="payment"
+                        value="emoney"
+                        {...register("payment")}
+                      />
+                      <InputRadio htmlFor="emoney">e-Money</InputRadio>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        id="cash"
+                        name="payment"
+                        value="cash"
+                        {...register("payment")}
+                      />
+                      <InputRadio htmlFor="cash">Cash on Delivery</InputRadio>
+                    </div>
+                  </div>
+                </StyledGridPayment>
+                <StyledGrid>
+                  <div>
+                    <StyledLabelError>
+                      <label htmlFor="eNumber">e-Money Number</label>
+                      {/* <span>Error</span> */}
+                    </StyledLabelError>
+                    <InputText
+                      placeholder="2654979"
+                      type="number"
+                      id="eNumber"
+                    />
+                  </div>
+                  <div>
+                    <StyledLabelError>
+                      <label htmlFor="ePin">e-Money PIN</label>
+                      {/* <span>Error</span> */}
+                    </StyledLabelError>
+                    <InputText placeholder="4632" type="number" id="ePin" />
+                  </div>
+                </StyledGrid>
+              </StyledSection>
+            </div>
+            <StyledProductSummary>
+              <Heading as="h5" color="dark">
+                Summary
+              </Heading>
+              <Summary />
+            </StyledProductSummary>
+          </StyledCheckOutSection>
+        </form>
       </Container>
     </>
   );

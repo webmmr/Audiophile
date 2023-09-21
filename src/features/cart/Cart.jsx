@@ -36,16 +36,15 @@ function Cart({ onCloseModal }) {
         <Heading as="h5" color="dark">
           Cart ({cart.length})
         </Heading>
-        <Link>
-          <Button
-            variation="remove"
-            onClick={() => {
-              dispatch(clearCart());
-            }}
-          >
-            Remove all
-          </Button>
-        </Link>
+
+        <Button
+          variation="remove"
+          onClick={() => {
+            dispatch(clearCart());
+          }}
+        >
+          Remove all
+        </Button>
       </StyledCartHeader>
       {
         <StyledList>
