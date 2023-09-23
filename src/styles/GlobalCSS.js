@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
   --darkGray: #4C4C4C;
   --paleLight: #f1f1f1;
   --light: #fafafa;
+  --lighter: #f2f2f2;
   --white: #fff;
   --black: #000;
 
@@ -29,7 +30,7 @@ const GlobalStyles = createGlobalStyle`
 body {
   font-family: 'Manrope', sans-serif;
   color: var(--dark);
-  background-color: var(--light);
+  background-color: var(--lighter);
   min-height: 100vh;
   line-height: 25px;
 }
@@ -44,6 +45,23 @@ a:hover {
 
 a:hover span {
   color: var(--dark);
+}
+
+.linkStyle  {
+  text-decoration: none;
+  color: var(--light);
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 1rem;
+};
+
+footer .linkStyle {
+  margin-left: -1rem;
+  margin-right: 1rem;
+}
+
+.linkStyle.active {
+  color: var(--brand);
 }
 
 p {
@@ -75,6 +93,13 @@ input[type="radio"] {
     top: 50%;
     left: 0;
     transform: translate(135%, -8px);
+  }
+
+  @media screen and (max-width: 767px) {
+  header ul {
+      display: none !important;
+    }
+
   }
 
   

@@ -9,13 +9,17 @@ const StyledCat = styled.div`
   background-color: var(--light);
   margin: 0 15px;
   border-radius: var(--default);
-  padding: 30px;
+  padding: 35px;
   text-align: center;
 `;
 
 const StyledImage = styled.img`
-  width: 300px;
+  width: 20rem;
   margin: -150px 0 -30px 0;
+
+  @media screen and (max-width: 767px) {
+    width: 8rem;
+  }
 `;
 
 function SingleCat({ name, image }) {

@@ -7,17 +7,36 @@ import Logo from "./Logo";
 import Menu from "./Menu";
 import Social from "./Social";
 import { useLocation } from "react-router-dom";
+import HorizontalRow from "./HorizontalRow";
 
 const StyledBestSection = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   padding: 120px 0;
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const StyledBestSectionContent = styled.div`
+  margin-right: 15%;
+
+  @media screen and (max-width: 767px) {
+    padding: 3rem 2rem 0;
+    margin: 0;
+    text-align: center;
+  }
 `;
 
 const StyleImg = styled.img`
   border-radius: var(--default);
   width: 100%;
+
+  @media screen and (max-width: 767px) {
+    order: -1;
+  }
 `;
 
 const StyledSpan = styled.span`
@@ -45,11 +64,7 @@ const Footer = () => {
       {!isCheckoutPage && (
         <Container>
           <StyledBestSection>
-            <div
-              style={{
-                marginRight: "15%",
-              }}
-            >
+            <StyledBestSectionContent>
               <Heading as="h2" color="dark">
                 Bringing you the <StyledSpan>Best</StyledSpan> audio gear
               </Heading>
@@ -66,17 +81,17 @@ const Footer = () => {
                 people who make Audiophile the best place to buy your portable
                 audio equipment.
               </p>
-            </div>
+            </StyledBestSectionContent>
             <StyleImg src={FooterImage} alt="Footer Image" />
           </StyledBestSection>
         </Container>
       )}
       <StyledFooter>
         <Container>
-          <Row>
+          <HorizontalRow variation="vertical">
             <Logo />
             <Menu />
-          </Row>
+          </HorizontalRow>
           <StyledFooterContent>
             <p>
               Audiophile is an all in one stop to fulfill your audio needs. We

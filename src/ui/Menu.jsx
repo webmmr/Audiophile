@@ -1,43 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledMenu = styled.ul`
   padding: 0;
   display: flex;
   gap: 2.125rem;
+
+  @media screen and (max-width: 767px) {
+    display: block;
+  }
 `;
 const StyledList = styled.li`
   list-style: none;
   color: var(--light);
 `;
 
-const linkStyle = {
-  textDecoration: "none",
-  color: "#f1f1f1",
-  textTransform: "uppercase",
-  fontWeight: "700",
-  padding: "1rem",
-};
-
 function Menu() {
   return (
     <StyledMenu>
       <StyledList>
-        <Link to="/" style={linkStyle}>
+        <NavLink to="/" className="linkStyle">
           Home
-        </Link>
-        <Link to="/shop" style={linkStyle}>
+        </NavLink>
+        <NavLink to="/shop" className="linkStyle">
           Shop All
-        </Link>
-        <Link to="/category/headphones" style={linkStyle}>
+        </NavLink>
+        <NavLink to="/category/headphones" className="linkStyle">
           Headphones
-        </Link>
-        <Link to="/category/earphones" style={linkStyle}>
+        </NavLink>
+        <NavLink to="/category/earphones" className="linkStyle">
           Earphones
-        </Link>
-        <Link to="/category/speakers" style={linkStyle}>
+        </NavLink>
+        <NavLink to="/category/speakers" className="linkStyle">
           Speakers
-        </Link>
+        </NavLink>
       </StyledList>
     </StyledMenu>
   );

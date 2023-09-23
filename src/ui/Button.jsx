@@ -59,6 +59,10 @@ const variations = {
       color: var(--brand);
       opacity: 1;
     }
+
+    @media screen and (max-width: 767px) {
+      padding: 0 2rem;
+    }
   `,
 
   link: css`

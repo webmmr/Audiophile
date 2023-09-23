@@ -13,6 +13,8 @@ import { useSelector } from "react-redux";
 import { getTotalCartQuantity } from "../features/cart/cartSlice";
 import Cart from "../features/cart/Cart";
 import Button from "./Button";
+import Bar from "../assets/shared/tablet/icon-hamburger.svg";
+import HorizontalRow from "./HorizontalRow";
 
 const StyledHeader = styled.header`
   /* background-color: var(--dark); */
@@ -45,13 +47,23 @@ const StyledBadge = styled.span`
   right: -12px;
 `;
 
+const MobileNavBar = styled.img`
+  display: none;
+
+  @media screen and (max-width: 767px) {
+    display: block;
+    margin-right: 2rem;
+  }
+`;
+
 function Header({ hasbanner }) {
   const totalCartQuantity = useSelector(getTotalCartQuantity);
 
   return (
     <StyledHeader hasbanner={hasbanner}>
       <Container>
-        <Row banner="yes">
+        <HorizontalRow banner="yes">
+          <MobileNavBar src={Bar} alt="Bar" />
           <Logo />
           <Menu />
           <div
@@ -80,7 +92,7 @@ function Header({ hasbanner }) {
               </Modal.Window>
             </Modal>
           </div>
-        </Row>
+        </HorizontalRow>
       </Container>
     </StyledHeader>
   );
