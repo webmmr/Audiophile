@@ -15,6 +15,7 @@ const router = createBrowserRouter([
   {
     element: <AppLayout />,
     errorElement: <Error />,
+    loader: dataLoader,
     children: [
       {
         path: "/",

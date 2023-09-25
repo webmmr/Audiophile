@@ -33,6 +33,10 @@ const StyledBanner = styled.section`
   @media screen and (max-width: 767px) {
     background-position: 80%;
   }
+
+  @media screen and (max-width: 575px) {
+    background-position: 75%;
+  }
 `;
 
 const StyledHero = styled.div`

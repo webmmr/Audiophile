@@ -4,7 +4,6 @@ import styled, { css } from "styled-components";
 import Container from "./Container";
 import Logo from "./Logo";
 import Menu from "./Menu";
-import Row from "./Row";
 import Modal from "./Modal";
 
 import CartIcon from "../assets/shared/desktop/icon-cart.svg";
@@ -15,6 +14,8 @@ import Cart from "../features/cart/Cart";
 import Button from "./Button";
 import Bar from "../assets/shared/tablet/icon-hamburger.svg";
 import HorizontalRow from "./HorizontalRow";
+import { useState } from "react";
+import Sidebar from "./Sidebar";
 
 const StyledHeader = styled.header`
   /* background-color: var(--dark); */
@@ -57,42 +58,44 @@ const MobileNavBar = styled.img`
 `;
 
 function Header({ hasbanner }) {
+  const [showMobileNav, setShowMobileNav] = useState(false);
   const totalCartQuantity = useSelector(getTotalCartQuantity);
 
   return (
     <StyledHeader hasbanner={hasbanner}>
       <Container>
         <HorizontalRow banner="yes">
-          <MobileNavBar src={Bar} alt="Bar" />
+          <MobileNavBar
+            src={Bar}
+            alt="Bar"
+            onClick={() => setShowMobileNav((prev) => !prev)}
+          />
+
           <Logo />
           <Menu />
-          <div
-            style={{
-              position: "relative",
-            }}
-          >
-            {/* <Link to="/cart">
+
+          {/* <Link to="/cart">
               <img src={CartIcon} alt="cart" />
               {totalCartQuantity > 0 && (
                 <StyledBadge>{totalCartQuantity}</StyledBadge>
               )}
             </Link> */}
 
-            <Modal>
-              <Modal.Open opens="cart">
-                <Button variation="cart" type="button">
-                  <img src={CartIcon} alt="cart" />
-                  {totalCartQuantity > 0 && (
-                    <StyledBadge>{totalCartQuantity}</StyledBadge>
-                  )}
-                </Button>
-              </Modal.Open>
-              <Modal.Window name="cart">
-                <Cart />
-              </Modal.Window>
-            </Modal>
-          </div>
+          <Modal>
+            <Modal.Open opens="cart">
+              <Button variation="cart" type="button">
+                <img src={CartIcon} alt="cart" />
+                {totalCartQuantity > 0 && (
+                  <StyledBadge>{totalCartQuantity}</StyledBadge>
+                )}
+              </Button>
+            </Modal.Open>
+            <Modal.Window name="cart">
+              <Cart />
+            </Modal.Window>
+          </Modal>
         </HorizontalRow>
+        {showMobileNav && <Sidebar />}
       </Container>
     </StyledHeader>
   );
