@@ -11,6 +11,11 @@ const Heading = styled.h1`
 
       line-height: 3.625rem;
       letter-spacing: 2px;
+
+      @media screen and (max-width: 575px) {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+      }
     `}
 
   ${(props) =>

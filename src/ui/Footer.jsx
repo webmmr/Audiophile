@@ -52,6 +52,16 @@ const StyledFooterContent = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: end;
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const CopyrightSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Footer = () => {
@@ -101,9 +111,10 @@ const Footer = () => {
             </p>
             <Social />
           </StyledFooterContent>
-          <Row>
+          <CopyrightSection>
             <p>Copyright 2021. All Rights Reserved</p>
-          </Row>
+            <Social screen="tablet" />
+          </CopyrightSection>
         </Container>
       </StyledFooter>
     </>

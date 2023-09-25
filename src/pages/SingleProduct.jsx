@@ -26,28 +26,50 @@ const StyledGridContainer = styled.section`
     css`
       align-items: center;
       grid-template-columns: 1fr 1fr;
+
+      @media screen and (max-width: 575px) {
+        grid-template-columns: 1fr;
+      }
     `}
   ${(props) =>
     props.columns === "three" &&
     css`
       text-align: center;
       grid-template-columns: 1fr 1fr 1fr;
+
+      @media screen and (max-width: 575px) {
+        grid-template-columns: 1fr;
+      }
     `}
 
   ${(props) =>
     props.columns === "twoOne" &&
     css`
       grid-template-columns: 2fr 1fr;
+
+      @media screen and (max-width: 575px) {
+        grid-template-columns: 1fr;
+        padding: 0 50px;
+      }
     `}
     ${(props) =>
     props.columns === "oneTwo" &&
     css`
       grid-template-columns: 2.13fr 3fr;
+
+      @media screen and (max-width: 575px) {
+        grid-template-columns: 1fr;
+        padding: 50px;
+      }
     `}
 `;
 
 const StyledDiv = styled.div`
   padding: 125px;
+
+  @media screen and (max-width: 575px) {
+    padding: 50px;
+  }
 `;
 
 const StyledButtonContainer = styled.div`
@@ -58,6 +80,7 @@ const StyledButtonContainer = styled.div`
 const StyledImage = styled.img`
   border-radius: var(--default);
   width: 100%;
+  background-color: var(--paleLight);
 `;
 
 const StyledUl = styled.ul`
@@ -79,6 +102,11 @@ const StyledCats = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 575px) {
+    flex-direction: column;
+    padding: 0 0 60px;
+  }
 `;
 
 const StyledUpdateContainer = styled.div`

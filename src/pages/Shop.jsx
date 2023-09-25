@@ -12,6 +12,10 @@ const StyledProductGrid = styled.section`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.5rem;
   padding: 150px 0;
+
+  @media screen and (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledProduct = styled.div`

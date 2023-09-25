@@ -18,6 +18,11 @@ const StyledCheckOutSection = styled.section`
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
+
+  @media screen and (max-width: 575px) {
+    grid-template-columns: 1fr;
+    padding-bottom: 50px;
+  }
 `;
 
 const StyledSection = styled.section`

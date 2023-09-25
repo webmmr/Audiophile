@@ -6,11 +6,15 @@ import arrow from "../assets/shared/desktop/icon-arrow-right.svg";
 import { Link, useLocation } from "react-router-dom";
 
 const StyledCat = styled.div`
-  background-color: var(--light);
+  background-color: var(--lighter);
   margin: 0 15px;
   border-radius: var(--default);
   padding: 35px;
   text-align: center;
+
+  @media screen and (max-width: 575px) {
+    margin-top: 100px;
+  }
 `;
 
 const StyledImage = styled.img`

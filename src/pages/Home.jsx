@@ -1,4 +1,3 @@
-import { useGlobalContext } from "../context/useGlobalContext";
 import styled from "styled-components";
 
 import bannerBackgroundImage from "../assets/home/desktop/image-hero.jpg";
@@ -13,9 +12,9 @@ import Container from "../ui/Container";
 import Overline from "../ui/Overline";
 import Heading from "../ui/Heading";
 import Button from "../ui/Button";
-import SingleCat from "../ui/SingleCat";
+
 import Row from "../ui/Row";
-import Loader from "../ui/Loader";
+
 import { getData } from "../services/apiShop";
 import { Link, useLoaderData } from "react-router-dom";
 import UniqueCats from "../ui/UniqueCats";
@@ -54,6 +53,11 @@ const StyledCats = styled.section`
 
   @media screen and (max-width: 767px) {
     padding: 150px 0 100px;
+  }
+
+  @media screen and (max-width: 575px) {
+    flex-direction: column;
+    padding: 0 0 60px;
   }
 `;
 

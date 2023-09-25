@@ -30,7 +30,7 @@ const GlobalStyles = createGlobalStyle`
 body {
   font-family: 'Manrope', sans-serif;
   color: var(--dark);
-  background-color: var(--lighter);
+  background-color: var(--light);
   min-height: 100vh;
   line-height: 25px;
 }
