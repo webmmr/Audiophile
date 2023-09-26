@@ -103,18 +103,6 @@ function Checkout() {
     console.log(data);
   };
 
-  // const paymentValue = form.watch().payment;
-
-  // useEffect(() => {
-  //   if (JSON.stringify(paymentValue) === "emoney") {
-  //     setSelectedPaymentMethod("emoney");
-  //   } else {
-  //     setSelectedPaymentMethod("cash");
-  //   }
-  // }, [paymentValue]);
-
-  // console.log(typeof paymentValue);
-
   return (
     <>
       <Container>

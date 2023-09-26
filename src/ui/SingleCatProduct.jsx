@@ -49,7 +49,7 @@ function SingleCatProduct({ name, description, slug, image, isNew, index }) {
       <StyledImage
         src={`../${desktop}`}
         alt={name}
-        reverseorder={reverseorder.toString()}
+        reverseorder={reverseorder}
       />
       <StyledDiv>
         {isNew && <Overline>New Product</Overline>}

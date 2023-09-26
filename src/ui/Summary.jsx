@@ -8,6 +8,8 @@ import { formatCurrency } from "../utilities/helpers";
 import Modal from "./Modal";
 
 import ConfirmOrder from "../features/checkout/ConfirmOrder";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const StyledPriceDiv = styled.div`
   display: flex;
@@ -45,6 +47,11 @@ const StyledInputSubmit = styled.input`
 
 function Summary({ isValid }) {
   const { cart, totalCartPrice, shipping, vat, grandTotal } = TotalPrice();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!cart.length) navigate("/");
+  }, [cart, navigate]);
 
   return (
     <>

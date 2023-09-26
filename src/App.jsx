@@ -1,6 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalCSS";
-import { GlobalProvider } from "./context/useGlobalContext";
 
 import AppLayout from "./ui/AppLayout";
 import Home, { loader as dataLoader } from "./pages/Home";
@@ -30,6 +29,7 @@ const router = createBrowserRouter([
       {
         path: "/category/:category",
         element: <Category />,
+        loader: dataLoader,
       },
       {
         path: "/product/:slug",
@@ -48,9 +48,8 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <GlobalProvider>
-        <RouterProvider router={router} />
-      </GlobalProvider>
+
+      <RouterProvider router={router} />
     </>
   );
 }

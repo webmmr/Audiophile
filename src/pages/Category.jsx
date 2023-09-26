@@ -1,12 +1,10 @@
-import { useParams } from "react-router-dom";
-import { useGlobalContext } from "../context/useGlobalContext";
+import { useLoaderData, useParams } from "react-router-dom";
 
 import Heading from "../ui/Heading";
 import styled from "styled-components";
 
 import ProductCategory from "../ui/ProductCategory";
 import Container from "../ui/Container";
-import Loader from "../ui/Loader";
 
 const StyledHeader = styled.header`
   background-color: var(--dark);
@@ -22,10 +20,7 @@ const StyledHeader = styled.header`
 function Category() {
   const { category } = useParams();
 
-  const { isLoading, productsData, error } = useGlobalContext();
-
-  if (isLoading) return <Loader />;
-  if (error) console.log(error);
+  const productsData = useLoaderData();
 
   const catProducts = productsData?.filter(
     (product) => product?.category === category
