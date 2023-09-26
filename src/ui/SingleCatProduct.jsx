@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import Row from "./Row";
+
 import Overline from "./Overline";
 import Heading from "./Heading";
 import Button from "./Button";
@@ -8,11 +8,14 @@ import { Link } from "react-router-dom";
 const StyledImage = styled.img`
   border-radius: var(--default);
   width: 100%;
-  ${(props) =>
-    props.reverseOrder &&
-    css`
-      order: 2;
-    `}
+
+  @media (min-width: 768px) {
+    ${(props) =>
+      props.reverseorder &&
+      css`
+        order: 2;
+      `}
+  }
 `;
 const StyledGridContainer = styled.section`
   display: grid;
@@ -20,23 +23,33 @@ const StyledGridContainer = styled.section`
   align-items: center;
   padding: 80px 0;
   margin: 80px 0 0;
+
+  @media screen and (max-width: 575px) {
+    margin-top: 0;
+    grid-template-columns: 1fr;
+    padding: 40px 0;
+  }
 `;
 
 const StyledDiv = styled.div`
   padding: 125px;
+
+  @media screen and (max-width: 575px) {
+    padding: 50px;
+  }
 `;
 
 function SingleCatProduct({ name, description, slug, image, isNew, index }) {
   const { desktop, tablet, mobile } = image;
 
-  const reverseOrder = (index + 1) % 2 === 0;
+  const reverseorder = (index + 1) % 2 === 0;
 
   return (
     <StyledGridContainer>
       <StyledImage
         src={`../${desktop}`}
         alt={name}
-        reverseOrder={reverseOrder}
+        reverseorder={reverseorder.toString()}
       />
       <StyledDiv>
         {isNew && <Overline>New Product</Overline>}

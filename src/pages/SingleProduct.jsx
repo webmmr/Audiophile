@@ -14,6 +14,10 @@ import { useState } from "react";
 
 const StyledBack = styled.div`
   padding: 50px 0;
+
+  @media screen and (max-width: 575px) {
+    padding: 30px 0;
+  }
 `;
 
 const StyledGridContainer = styled.section`
@@ -29,6 +33,7 @@ const StyledGridContainer = styled.section`
 
       @media screen and (max-width: 575px) {
         grid-template-columns: 1fr;
+        padding: 0 0 50px;
       }
     `}
   ${(props) =>
@@ -52,6 +57,7 @@ const StyledGridContainer = styled.section`
         padding: 0 50px;
       }
     `}
+
     ${(props) =>
     props.columns === "oneTwo" &&
     css`

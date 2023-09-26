@@ -126,7 +126,7 @@ const StyledDiv = styled.div`
 
 const StyledYX1 = styled.div`
   border-radius: var(--default);
-  background-color: var(--light);
+  background-color: var(--lighter);
   margin-right: 0;
   padding: 120px 200px;
 

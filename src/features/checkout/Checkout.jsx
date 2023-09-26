@@ -9,9 +9,14 @@ import InputRadio from "../../ui/InputRadio";
 
 import Summary from "../../ui/Summary";
 import { useForm } from "react-hook-form";
+import { useEffect, useMemo, useState } from "react";
 
 const StyledBack = styled.div`
   padding: 50px 0;
+
+  @media screen and (max-width: 575px) {
+    padding: 30px 0;
+  }
 `;
 
 const StyledCheckOutSection = styled.section`
@@ -38,6 +43,11 @@ const StyledGrid = styled.div`
   align-items: center;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+
+  @media screen and (max-width: 575px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 `;
 
 const StyledGridPayment = styled.div`
@@ -46,6 +56,10 @@ const StyledGridPayment = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   margin-bottom: 1rem;
+
+  @media screen and (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledLabelError = styled.div`
@@ -70,23 +84,36 @@ const StyledProductSummary = styled.section`
 
 function Checkout() {
   const navigate = useNavigate();
+  // const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("emoney");
+
+  const form = useForm({
+    defaultValues: {
+      payment: "emoney",
+    },
+    mode: "onChange",
+  });
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({
-    defaultValues: {
-      payment: "cash",
-    },
-    mode: "onChange",
-  });
+  } = form;
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
-  console.log(errors);
+  // const paymentValue = form.watch().payment;
+
+  // useEffect(() => {
+  //   if (JSON.stringify(paymentValue) === "emoney") {
+  //     setSelectedPaymentMethod("emoney");
+  //   } else {
+  //     setSelectedPaymentMethod("cash");
+  //   }
+  // }, [paymentValue]);
+
+  // console.log(typeof paymentValue);
 
   return (
     <>
@@ -250,6 +277,7 @@ function Checkout() {
                     </div>
                   </div>
                 </StyledGridPayment>
+
                 <StyledGrid>
                   <div>
                     <StyledLabelError>
@@ -264,6 +292,7 @@ function Checkout() {
                       {...register("enumber")}
                     />
                   </div>
+
                   <div>
                     <StyledLabelError>
                       <label htmlFor="epin">e-Money PIN</label>

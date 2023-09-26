@@ -13,9 +13,14 @@ const StyledBox = styled.div`
   display: grid;
   grid-auto-flow: column;
   align-items: center;
-  background-color: var(--paleLight);
+  background-color: var(--light);
   margin-bottom: 2rem;
   border-radius: var(--default);
+
+  @media screen and (max-width: 575px) {
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledDetailBox = styled.div`
@@ -34,6 +39,12 @@ const StyledTotalBox = styled.div`
   flex-direction: column;
 
   justify-content: center;
+  @media screen and (max-width: 575px) {
+    text-align: center;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: var(--default);
+    border-bottom-right-radius: var(--default);
+  }
 `;
 
 const StyledCopy = styled.p`

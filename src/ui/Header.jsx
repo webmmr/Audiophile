@@ -14,8 +14,9 @@ import Cart from "../features/cart/Cart";
 import Button from "./Button";
 import Bar from "../assets/shared/tablet/icon-hamburger.svg";
 import HorizontalRow from "./HorizontalRow";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
+import { useLocation } from "react-router-dom";
 
 const StyledHeader = styled.header`
   /* background-color: var(--dark); */
@@ -24,13 +25,13 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1 1 auto;
   /* position: relative; */
-
   ${(props) =>
     props.hasbanner === "no" &&
     css`
       background-color: var(--dark);
-    `}
+    `};
 `;
 
 const StyledBadge = styled.span`
@@ -44,8 +45,13 @@ const StyledBadge = styled.span`
   font-size: 0.8rem;
   font-weight: 700;
   position: absolute;
-  top: -12px;
+  top: -30%;
   right: -12px;
+
+  @media screen and (max-width: 575px) {
+    top: 30px;
+    right: 5px;
+  }
 `;
 
 const MobileNavBar = styled.img`
@@ -60,6 +66,12 @@ const MobileNavBar = styled.img`
 function Header({ hasbanner }) {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const totalCartQuantity = useSelector(getTotalCartQuantity);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setShowMobileNav(false);
+  }, [location]);
 
   return (
     <StyledHeader hasbanner={hasbanner}>
@@ -84,7 +96,13 @@ function Header({ hasbanner }) {
           <Modal>
             <Modal.Open opens="cart">
               <Button variation="cart" type="button">
-                <img src={CartIcon} alt="cart" />
+                <img
+                  src={CartIcon}
+                  alt="cart"
+                  style={{
+                    marginTop: "5px",
+                  }}
+                />
                 {totalCartQuantity > 0 && (
                   <StyledBadge>{totalCartQuantity}</StyledBadge>
                 )}

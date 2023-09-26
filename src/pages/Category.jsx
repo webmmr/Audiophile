@@ -3,7 +3,7 @@ import { useGlobalContext } from "../context/useGlobalContext";
 
 import Heading from "../ui/Heading";
 import styled from "styled-components";
-import Row from "../ui/Row";
+
 import ProductCategory from "../ui/ProductCategory";
 import Container from "../ui/Container";
 import Loader from "../ui/Loader";
@@ -13,6 +13,10 @@ const StyledHeader = styled.header`
   text-align: center;
   padding: 215px 0 100px;
   margin-top: -125px;
+
+  @media screen and (max-width: 575px) {
+    padding: 175px 0 60px;
+  }
 `;
 
 function Category() {

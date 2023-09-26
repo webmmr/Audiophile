@@ -24,6 +24,13 @@ const Heading = styled.h1`
       font-size: 2.5rem;
       line-height: 2.75rem;
       letter-spacing: 1.5px;
+
+      @media screen and (max-width: 767px) {
+        font-size: 2.25rem;
+      }
+      @media screen and (max-width: 575px) {
+        font-size: 1.75rem;
+      }
     `}
 
     ${(props) =>

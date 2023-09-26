@@ -1,4 +1,3 @@
-import Row from "./Row";
 import FooterImage from "../assets/shared/desktop/image-best-gear.jpg";
 import styled from "styled-components";
 import Container from "./Container";
@@ -44,11 +43,11 @@ const StyledSpan = styled.span`
 `;
 
 const StyledFooter = styled.footer`
-  padding: 60px 0;
   background-color: var(--dark);
 `;
 
 const StyledFooterContent = styled.section`
+  padding: 60px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: end;
@@ -56,12 +55,33 @@ const StyledFooterContent = styled.section`
   @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
   }
+
+  @media screen and (max-width: 575px) {
+    text-align: center;
+    padding: 0 2rem;
+  }
 `;
 
 const CopyrightSection = styled.div`
+  padding-bottom: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 575px) {
+    flex-direction: column;
+  }
+`;
+
+const StyledLine = styled.span`
+  background-color: var(--brand);
+  height: 4px;
+  width: 150px;
+  display: block;
+
+  @media screen and (max-width: 575px) {
+    margin: 0 auto;
+  }
 `;
 
 const Footer = () => {
@@ -98,6 +118,7 @@ const Footer = () => {
       )}
       <StyledFooter>
         <Container>
+          <StyledLine></StyledLine>
           <HorizontalRow variation="vertical">
             <Logo />
             <Menu />

@@ -87,6 +87,7 @@ const variations = {
 
     border: none;
     background: transparent;
+    position: relative;
   `,
 
   update: css`

@@ -29,14 +29,17 @@ const StyledImage = styled.img`
 function SingleCat({ name, image }) {
   const { thumbnail } = image;
 
+  console.log(thumbnail);
+
   // determine the page, the category image path is altering depending on that
   const location = useLocation();
   const isProductPage = location.pathname.startsWith("/product/");
+  const isCategoryPage = location.pathname.startsWith("/category/");
 
   return (
     <StyledCat>
       <StyledImage
-        src={isProductPage ? `../${thumbnail}` : thumbnail}
+        src={isProductPage || isCategoryPage ? `../${thumbnail}` : thumbnail}
         alt={name}
       />
 

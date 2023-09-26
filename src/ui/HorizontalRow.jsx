@@ -15,6 +15,11 @@ const HorizontalRow = styled.div`
         align-items: flex-start;
         gap: 2rem;
       }
+
+      @media screen and (max-width: 575px) {
+        align-items: center;
+        text-align: center;
+      }
     `}
 
   ${(props) =>

@@ -47,18 +47,27 @@ a:hover span {
   color: var(--dark);
 }
 
+
+
 .linkStyle  {
   text-decoration: none;
   color: var(--light);
   text-transform: uppercase;
   font-weight: 700;
-  padding: 1rem;
+  display: inline-block;
+  padding: 0.6rem;
 };
 
 footer .linkStyle {
   margin-left: -1rem;
   margin-right: 1rem;
 }
+
+@media screen and (max-width: 575px) {
+  footer .linkStyle {
+  margin: 0;
+}
+      }
 
 .linkStyle.active {
   color: var(--brand);
