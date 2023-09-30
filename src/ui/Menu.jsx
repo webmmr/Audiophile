@@ -9,6 +9,7 @@ const StyledMenu = styled.ul`
 
   @media screen and (max-width: 767px) {
     display: block;
+    margin-right: 0;
   }
   @media screen and (max-width: 575px) {
     margin-right: 0;

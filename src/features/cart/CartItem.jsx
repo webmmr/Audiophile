@@ -20,6 +20,11 @@ const StyledDiv = styled.div`
   align-items: center;
   margin-right: 4rem;
   min-width: 15rem;
+
+  @media screen and (max-width: 400px) {
+    margin-right: 1rem;
+    min-width: unset;
+  }
 `;
 
 const StyledImg = styled.img`

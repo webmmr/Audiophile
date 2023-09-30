@@ -63,11 +63,12 @@ footer .linkStyle {
   margin-right: 1rem;
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 767px) {
   footer .linkStyle {
   margin: 0;
 }
-      }
+}
+
 
 .linkStyle.active {
   color: var(--brand);

@@ -16,6 +16,7 @@ const StyledBestSection = styled.div`
 
   @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
+    padding: 80px 0;
   }
 `;
 
@@ -54,6 +55,7 @@ const StyledFooterContent = styled.section`
 
   @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
+    padding: 20px 0;
   }
 
   @media screen and (max-width: 575px) {

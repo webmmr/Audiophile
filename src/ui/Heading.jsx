@@ -53,6 +53,10 @@ const Heading = styled.h1`
     css`
       font-size: 1.5rem;
       letter-spacing: 1.7px;
+
+      @media screen and (max-width: 767px) {
+        font-size: 1.25rem;
+      }
     `}
 
     ${(props) =>

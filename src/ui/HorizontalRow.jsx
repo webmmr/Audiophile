@@ -14,6 +14,7 @@ const HorizontalRow = styled.div`
         flex-direction: column;
         align-items: flex-start;
         gap: 2rem;
+        padding: 40px 0 20px;
       }
 
       @media screen and (max-width: 575px) {

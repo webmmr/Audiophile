@@ -49,8 +49,7 @@ const StyledBadge = styled.span`
   right: -12px;
 
   @media screen and (max-width: 575px) {
-    top: 30px;
-    right: 5px;
+    right: -7px;
   }
 `;
 

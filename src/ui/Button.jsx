@@ -12,6 +12,10 @@ const type = {
 
   big: css`
     padding: 0.8rem 1.6rem;
+
+    @media screen and (max-width: 767px) {
+      padding: 0.6rem 1.2rem;
+    }
   `,
 };
 

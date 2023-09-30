@@ -1,9 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  decreaseItem,
-  getTotalSingleProductQuantity,
-  increaseItem,
-} from "../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { decreaseItem, increaseItem } from "../features/cart/cartSlice";
 import Button from "./Button";
 import styled from "styled-components";
 

@@ -15,7 +15,7 @@ import { useState } from "react";
 const StyledBack = styled.div`
   padding: 50px 0;
 
-  @media screen and (max-width: 575px) {
+  @media screen and (max-width: 767px) {
     padding: 30px 0;
   }
 `;
@@ -68,19 +68,31 @@ const StyledGridContainer = styled.section`
         padding: 50px;
       }
     `}
+
+    @media screen and (max-width: 767px) {
+    padding: 60px 0;
+  }
 `;
 
 const StyledDiv = styled.div`
   padding: 125px;
 
+  @media screen and (max-width: 767px) {
+    padding: 40px 20px;
+  }
+
   @media screen and (max-width: 575px) {
-    padding: 50px;
+    padding: 40px;
   }
 `;
 
 const StyledButtonContainer = styled.div`
   display: flex;
   gap: 1rem;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledImage = styled.img`
@@ -109,6 +121,10 @@ const StyledCats = styled.section`
   justify-content: space-between;
   align-items: center;
 
+  @media screen and (max-width: 767px) {
+    padding: 80px 0 0;
+  }
+
   @media screen and (max-width: 575px) {
     flex-direction: column;
     padding: 0 0 60px;
@@ -128,6 +144,10 @@ const StyledSpan2 = styled.span`
   background: var(--paleLight);
   font-weight: 700;
   font-size: 1rem;
+
+  @media screen and (max-width: 767px) {
+    padding: 0.6rem 1.2rem;
+  }
 `;
 
 function SingleProduct() {

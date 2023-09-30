@@ -16,6 +16,10 @@ const Overline = styled.p`
     css`
       color: var(--light);
     `}
+
+    @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
 `;
 
 Overline.defaultProps = {
